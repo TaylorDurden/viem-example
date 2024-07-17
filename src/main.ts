@@ -11,7 +11,6 @@ import { mainnet } from "viem/chains";
 
 const USDC_CONTRACT_ADDRESS = "0xdAC17F958D2ee523a2206206994597C13D831ec7";
 const MAINNET_RPC_URL = import.meta.env.VITE_MAINNET_RPC_URL;
-console.log("MAINNET_RPC_URL: ", MAINNET_RPC_URL);
 
 interface TransferEvent {
   from?: string;
@@ -62,7 +61,6 @@ async function fetchRecentUSDCTransfers(): Promise<TransferEvent[]> {
       data: log.data,
       topics: log.topics,
     }) as DecodedEventLog;
-    console.log("decodedLog:", decodedLog);
     const transferEvent: TransferEvent = {
       from: decodedLog.args?.from,
       to: decodedLog.args?.to,
